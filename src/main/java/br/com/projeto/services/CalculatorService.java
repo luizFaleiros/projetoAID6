@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorService {
 
-    public Double sum(Double num1, Double num2) {
+    public Double sum(Double double1, Double double2) {
         return double1 + double2;
     }
 
-    public Double divide(Double num1, Double num2) {
+    public Double divide(Double double1, Double double2) {
         return double1 / double2;
     }
 
-    public Double multiple(Double num1, Double num2) {
+    public Double multiple(Double double1, Double double2) {
         return double1 * double2;
     }
 
-    public Double sub(Double num1, Double num2) {
+    public Double sub(Double double1, Double double2) {
         return double1 - double2;
     }
 
