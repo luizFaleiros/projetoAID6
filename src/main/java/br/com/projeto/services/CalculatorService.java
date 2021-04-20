@@ -5,43 +5,33 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class CalculatorService {
 
-    private final NumericUtil numericUtil;
-
-    public Double sum(String num1, String num2){
-       Double double1 = numericUtil.convertToDouble(num1);
-        Double double2 = numericUtil.convertToDouble(num2);
+    public Double sum(Double num1, Double num2) {
         return double1 + double2;
     }
 
-    public Double divide(String num1, String num2){
-        Double double1 = numericUtil.convertToDouble(num1);
-        Double double2 = numericUtil.convertToDouble(num2);
+    public Double divide(Double num1, Double num2) {
         return double1 / double2;
     }
 
-    public Double multiple(String num1, String num2){
-        Double double1 = numericUtil.convertToDouble(num1);
-        Double double2 = numericUtil.convertToDouble(num2);
+    public Double multiple(Double num1, Double num2) {
         return double1 * double2;
     }
 
-    public Double sub(String num1, String num2){
-        Double double1 = numericUtil.convertToDouble(num1);
-        Double double2 = numericUtil.convertToDouble(num2);
+    public Double sub(Double num1, Double num2) {
         return double1 - double2;
     }
 
-    public Double exp(String num1, String num2){
-        Double double1 = numericUtil.convertToDouble(num1);
-        Double res = double1;
-        Integer inteiro = Integer.parseInt(num2);
-        for (int i = 0; i < inteiro; i++){
-            res += res * double1;
+    public Double exp(Double num1, Integer num2) {
+        Double res = 1D;
+        for (int i = 0; i < num2; i++) {
+            res += res * num1;
         }
         return res;
     }
 
+    public Double sqr(Double convertToDouble) {
+        return convertToDouble*convertToDouble;
+    }
 }
