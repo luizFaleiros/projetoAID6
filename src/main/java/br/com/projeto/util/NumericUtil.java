@@ -10,9 +10,6 @@ import java.util.Objects;
 public class NumericUtil {
 
     public Double convertToDouble(String num) {
-        if (Objects.isNull(num)) {
-            throw new NotANumberException("Numero não digitado");
-        }
         var number = num.replace(",",".");
         isNumeric(num);
         return Double.parseDouble(number);
@@ -27,6 +24,14 @@ public class NumericUtil {
         if(BooleanUtils.isFalse(strNumber.matches("[-+]?[0-9]*\\.?[0-9]+"))){
             throw new NotANumberException("Não é um numero");
         }
+    }
+
+
+    public Integer convertToInteger(String num) {
+
+        isNumeric(num);
+        return Integer.parseInt(num);
+
     }
 
 }

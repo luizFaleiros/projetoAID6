@@ -44,7 +44,7 @@ public class CalculatorController {
     @GetMapping("/exp/{num1}/{num2}")
     public ResponseEntity<Double> exp(@PathVariable("num1") String num1, @PathVariable("num2") String num2) {
 
-        return ResponseEntity.ok(calculatorService.exp(numericUtil.convertToDouble(num1),numericUtil.convertToDouble(num2)));
+        return ResponseEntity.ok(calculatorService.exp(numericUtil.convertToDouble(num1),numericUtil.convertToInteger(num2)));
     }
 
     @GetMapping("/sqr/{num1}")
