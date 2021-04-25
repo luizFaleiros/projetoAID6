@@ -1,9 +1,17 @@
 package br.com.projeto.domain.mappers;
 
-import org.mapstruct.Mapper;
+import br.com.projeto.domain.dto.response.PersonResponse;
+import br.com.projeto.domain.entities.Person;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
-import static br.com.projeto.domain.mappers.MapstructConstants.SPRING;
+@Component
+@RequiredArgsConstructor
+public class PersonMapper {
+    private final ModelMapper mapper;
 
-@Mapper(componentModel = SPRING)
-public interface PersonMapper {
+    public PersonResponse toResponse(Person entity){
+        return mapper.map(entity,PersonResponse.class);
+    }
 }
