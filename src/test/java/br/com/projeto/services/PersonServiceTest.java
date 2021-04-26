@@ -1,6 +1,7 @@
 package br.com.projeto.services;
 
 import br.com.projeto.domain.entities.Person;
+import br.com.projeto.exception.PersonNotFound;
 import br.com.projeto.repository.PersonRepository;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,13 +15,14 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -57,11 +59,8 @@ class PersonServiceTest {
     @Test
     @DisplayName("Achando um Person")
     public void whenFindByIdThenReturnOnePerson() {
-        //Quando for chamado o repositório
         when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(testPerson));
-        //
         Person person = personService.findById(1L);
-
         verify(personRepository, times(1)).findById(1L);
         assertEquals(person.getId(),testPerson.getId());
         assertEquals(person.getId(),testPerson.getId());
@@ -73,6 +72,13 @@ class PersonServiceTest {
     }
 
     @Test
+    @DisplayName("Estourando Erro por não ter um person")
+    public void whenFindByIdThenTrhowException() {
+        when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(null));
+        assertThrows(PersonNotFound.class,()->personService.findById(1L));
+    }
+
+    @Test
     @DisplayName("Trazendo uma lista de Persons")
     public void whenFindAllThenReturnListOfPerson() {
         when(personRepository.findAll()).thenReturn(List.of(testPerson));
@@ -81,5 +87,23 @@ class PersonServiceTest {
         verify(personRepository,times(1)).findAll();
         assertEquals(persons.size(),personMock.size());
         assertEquals(persons.hashCode(),personMock.hashCode());
+    }
+
+    @Test
+    @DisplayName("Salvando um person")
+    public void whenSaveThenSaveAPerson(){
+        when(personRepository.save(any(Person.class))).thenReturn(testPerson);
+        personService.save(testPerson);
+        verify(personService,times(1)).save();
+        verify(personRepository,times(1)).save();
+    }
+
+    @Test
+    @DisplayName("Salvando um person")
+    public void whenSaveThenSaveAPerson(){
+        when(personRepository.save(any(Person.class))).thenReturn(testPerson);
+        personService.update(testPerson);
+        verify(personService,times(1)).update();
+        verify(personRepository,times(1)).save();
     }
 }
