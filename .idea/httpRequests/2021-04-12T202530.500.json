@@ -1,0 +1,7 @@
+{
+  "timestamp": "2021-04-12T23:25:29.945+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "",
+  "path": "/calculator/sum/1/2"
+}

@@ -1,0 +1,10 @@
+GET http://localhost:8080/calculator/sum/1/2
+
+<> 2021-04-12T202530.500.json
+
+###
+
+GET http://localhost:8080/calculator/sum/{{1}}/{{2}}
+
+###
+

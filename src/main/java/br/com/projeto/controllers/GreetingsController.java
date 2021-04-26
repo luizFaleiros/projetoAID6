@@ -1,4 +1,4 @@
-package br.com.projeto.controller;
+package br.com.projeto.controllers;
 
 import br.com.projeto.domain.dto.GreetingsDTO;
 import org.springframework.web.bind.annotation.GetMapping;
