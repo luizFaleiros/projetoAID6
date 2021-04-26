@@ -14,7 +14,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 public class Person implements Serializable {
-
     private Long id;
     private String firstName;
     private String lastName;
@@ -26,7 +25,9 @@ public class Person implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Person)) return false;
         Person person = (Person) o;
-        return getId().equals(person.getId()) && getFirstName().equals(person.getFirstName()) && getLastName().equals(person.getLastName()) && getAddress().equals(person.getAddress()) && getGender().equals(person.getGender());
+        return getId().equals(person.getId()) && getFirstName().equals(person.getFirstName())
+                && getLastName().equals(person.getLastName()) && getAddress().equals(person.getAddress())
+                && getGender().equals(person.getGender());
     }
 
     @Override

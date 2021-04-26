@@ -1,4 +1,4 @@
-package br.com.projeto.mock;
+package br.com.projeto.repository;
 
 import br.com.projeto.domain.entities.Person;
 import org.springframework.stereotype.Component;
@@ -6,11 +6,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component
-public class PersonMockRepository {
+public class PersonRepository {
 
     private final AtomicLong counter = new AtomicLong();
 
