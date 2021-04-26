@@ -21,4 +21,12 @@ public class PersonService {
     public List<Person> finAll(){
         return personRepository.findAll();
     }
+
+    public void save(Person person) {
+        personRepository.save(person);
+    }
+
+    public Person update(Person person) {
+       return personRepository.save(person);
+    }
 }

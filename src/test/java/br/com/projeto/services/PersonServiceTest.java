@@ -3,16 +3,12 @@ package br.com.projeto.services;
 import br.com.projeto.domain.entities.Person;
 import br.com.projeto.exception.PersonNotFound;
 import br.com.projeto.repository.PersonRepository;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -21,19 +17,15 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @DisplayName("Teste da classe person")
 @ExtendWith(MockitoExtension.class)
-@RunWith(MockitoJUnitRunner.class)
 class PersonServiceTest {
-
-    @Rule
-    public ExpectedException expected = ExpectedException.none();
 
     @InjectMocks
     private PersonService personService;
@@ -94,16 +86,14 @@ class PersonServiceTest {
     public void whenSaveThenSaveAPerson(){
         when(personRepository.save(any(Person.class))).thenReturn(testPerson);
         personService.save(testPerson);
-        verify(personService,times(1)).save();
-        verify(personRepository,times(1)).save();
+        verify(personRepository,times(1)).save(any(Person.class));
     }
 
     @Test
     @DisplayName("Salvando um person")
-    public void whenSaveThenSaveAPerson(){
+    public void whenUpdateThenUpdateAPerson(){
         when(personRepository.save(any(Person.class))).thenReturn(testPerson);
         personService.update(testPerson);
-        verify(personService,times(1)).update();
-        verify(personRepository,times(1)).save();
+        verify(personRepository,times(1)).save(any(Person.class));
     }
 }
