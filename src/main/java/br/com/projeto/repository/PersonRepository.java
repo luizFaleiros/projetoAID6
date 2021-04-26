@@ -40,4 +40,8 @@ public class PersonRepository {
         }
         return persons;
     }
+
+    public Person save(Person person) {
+        return person;
+    }
 }
