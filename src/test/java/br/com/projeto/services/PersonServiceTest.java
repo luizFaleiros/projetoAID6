@@ -34,6 +34,7 @@ class PersonServiceTest {
     private PersonRepository personRepository;
 
     private Person testPerson;
+    private Person testPersonUpdade;
 
 
     @BeforeEach
@@ -45,6 +46,14 @@ class PersonServiceTest {
                 .address("Teste")
                 .gender("Teste")
                 .build();
+
+        testPersonUpdade = Person.builder()
+                .id(1L)
+                .firstName("Teste1")
+                .lastName("Teste1")
+                .address("Teste1")
+                .gender("Teste1")
+                .build();
     }
 
 
@@ -54,12 +63,12 @@ class PersonServiceTest {
         when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(testPerson));
         Person person = personService.findById(1L);
         verify(personRepository, times(1)).findById(1L);
-        assertEquals(person.getId(),testPerson.getId());
-        assertEquals(person.getId(),testPerson.getId());
-        assertEquals(person.getFirstName(),testPerson.getFirstName());
-        assertEquals(person.getLastName(),testPerson.getLastName());
-        assertEquals(person.getAddress(),testPerson.getAddress());
-        assertEquals(person.getGender(),testPerson.getGender());
+        assertEquals(person.getId(), testPerson.getId());
+        assertEquals(person.getId(), testPerson.getId());
+        assertEquals(person.getFirstName(), testPerson.getFirstName());
+        assertEquals(person.getLastName(), testPerson.getLastName());
+        assertEquals(person.getAddress(), testPerson.getAddress());
+        assertEquals(person.getGender(), testPerson.getGender());
 
     }
 
@@ -67,7 +76,7 @@ class PersonServiceTest {
     @DisplayName("Estourando Erro por não ter um person")
     public void whenFindByIdThenTrhowException() {
         when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(null));
-        assertThrows(PersonNotFound.class,()->personService.findById(1L));
+        assertThrows(PersonNotFound.class, () -> personService.findById(1L));
     }
 
     @Test
@@ -76,24 +85,32 @@ class PersonServiceTest {
         when(personRepository.findAll()).thenReturn(List.of(testPerson));
         List<Person> persons = Arrays.asList(testPerson);
         List<Person> personMock = personService.finAll();
-        verify(personRepository,times(1)).findAll();
-        assertEquals(persons.size(),personMock.size());
-        assertEquals(persons.hashCode(),personMock.hashCode());
+        verify(personRepository, times(1)).findAll();
+        assertEquals(persons.size(), personMock.size());
+        assertEquals(persons.hashCode(), personMock.hashCode());
     }
 
     @Test
     @DisplayName("Salvando um person")
-    public void whenSaveThenSaveAPerson(){
+    public void whenSaveThenSaveAPerson() {
         when(personRepository.save(any(Person.class))).thenReturn(testPerson);
         personService.save(testPerson);
-        verify(personRepository,times(1)).save(any(Person.class));
+        verify(personRepository, times(1)).save(any(Person.class));
     }
 
     @Test
     @DisplayName("Salvando um person")
-    public void whenUpdateThenUpdateAPerson(){
-        when(personRepository.save(any(Person.class))).thenReturn(testPerson);
-        personService.update(testPerson);
-        verify(personRepository,times(1)).save(any(Person.class));
+    public void whenUpdateThenUpdateAPerson() {
+        when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(testPerson));
+        when(personRepository.save(any(Person.class))).thenReturn(testPersonUpdade);
+        Person person = personService.update(testPersonUpdade, 1L);
+        assertEquals(person.getId(), testPersonUpdade.getId());
+        assertEquals(person.getId(), testPersonUpdade.getId());
+        assertEquals(person.getFirstName(), testPersonUpdade.getFirstName());
+        assertEquals(person.getLastName(), testPersonUpdade.getLastName());
+        assertEquals(person.getAddress(), testPersonUpdade.getAddress());
+        assertEquals(person.getGender(), testPersonUpdade.getGender());
+        verify(personRepository, times(1)).save(any(Person.class));
+
     }
 }
