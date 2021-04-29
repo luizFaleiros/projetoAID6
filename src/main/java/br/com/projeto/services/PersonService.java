@@ -14,11 +14,11 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
-    public Person findById(Long id){
+    public Person findById(Long id) {
         return personRepository.findById(id).orElseThrow(() -> new PersonNotFound("Pessoa não encontrada"));
     }
 
-    public List<Person> finAll(){
+    public List<Person> finAll() {
         return personRepository.findAll();
     }
 
@@ -26,7 +26,17 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    public Person update(Person person) {
-       return personRepository.save(person);
+    public Person update(Person person, Long id) {
+        Person oldPerson = findById(id);
+        oldPerson.setFirstName(person.getFirstName());
+        oldPerson.setLastName(person.getLastName());
+        oldPerson.setAddress(person.getAddress());
+        oldPerson.setGender(person.getGender());
+        return personRepository.save(oldPerson);
+    }
+
+    public void delete(Long id) {
+        Person person = findById(id);
+        personRepository.delete(person);
     }
 }

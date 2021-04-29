@@ -6,6 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,11 +19,24 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "Person")
 public class Person implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "FIRST_NAME", nullable = false, length = 80)
     private String firstName;
+
+    @Column(name = "LAST_NAME", nullable = false, length = 80)
     private String lastName;
+
+    @Column(name = "ADDRESS", nullable = false, length = 80)
     private String address;
+
+    @Column(name = "GENDER", nullable = false, length = 10)
     private String gender;
 
     @Override
