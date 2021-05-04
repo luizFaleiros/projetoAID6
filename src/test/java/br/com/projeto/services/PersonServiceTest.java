@@ -1,7 +1,7 @@
 package br.com.projeto.services;
 
 import br.com.projeto.domain.entities.Person;
-import br.com.projeto.exception.PersonNotFound;
+import br.com.projeto.exception.PersonNotFoundException;
 import br.com.projeto.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -76,7 +76,7 @@ class PersonServiceTest {
     @DisplayName("Estourando Erro por não ter um person")
     public void whenFindByIdThenTrhowException() {
         when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(null));
-        assertThrows(PersonNotFound.class, () -> personService.findById(1L));
+        assertThrows(PersonNotFoundException.class, () -> personService.findById(1L));
     }
 
     @Test

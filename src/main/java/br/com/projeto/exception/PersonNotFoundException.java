@@ -7,10 +7,13 @@ import java.io.Serializable;
 import java.util.function.Supplier;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class PersonNotFound  extends RuntimeException{
+public class PersonNotFoundException extends RuntimeException{
 
-    public PersonNotFound(String message) {
+    public PersonNotFoundException(String message) {
         super(message);
+    }
+    public PersonNotFoundException(String message, Throwable cause) {
+        super(message,cause);
     }
 
 
