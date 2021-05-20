@@ -10,4 +10,9 @@
 ## Tecnologias utilizadas
 <p>O projeto esta utilizando spring-boot na versão 2.4.4 java na versão 15. O banco de dados escolhido foi o mariaDB</p>
 
+## Branchs
+
+<p><b>feature/calculator</b>: inserido metódos para uma calculadora basica</p>
+<p><b>feature/spring-database</b>: inserido Banco de dados</p>
+<p><b>feature/calculator</b>: inserido os verbos HTTP</p>
 
