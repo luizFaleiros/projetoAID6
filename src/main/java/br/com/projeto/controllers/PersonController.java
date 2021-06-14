@@ -30,7 +30,7 @@ public class PersonController {
     private final PersonMapper personMapper;
 
 
-    @GetMapping
+    @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     public ResponseEntity<List<PersonResponse>> findAll() {
         List<PersonResponse> personResponse = personService.finAll().stream()
                 .map(personMapper::EntityToResponse)
@@ -38,26 +38,26 @@ public class PersonController {
         return ResponseEntity.ok(personResponse);
 
     }
-    @PostMapping
+    @PostMapping(produces = {"application/json", "application/xml", "application/x-yaml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     public ResponseEntity<Void> save(@RequestBody PersonDTO person) {
         personService.save(personMapper.dtoToEntity(person));
         return ResponseEntity.ok().build();
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     public ResponseEntity<Void> update(@RequestBody @Valid PersonDTO person, @PathVariable("id") Long id) {
         personService.update(personMapper.dtoToEntity(person), id);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         personService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value =  "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     public ResponseEntity<PersonResponse> findById(@PathVariable("id") Long id) {
         PersonResponse personResponse = personMapper.
                 EntityToResponse(personService.findById(id));
