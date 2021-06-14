@@ -15,4 +15,4 @@
 <p><b>feature/calculator</b>: inserido metódos para uma calculadora basica</p>
 <p><b>feature/spring-database</b>: inserido Banco de dados</p>
 <p><b>feature/calculator</b>: inserido os verbos HTTP</p>
-<p><b>feature/calculator</b>: Inserido o FlyWay para migrations</p>
+<p><b>feature/migration</b>: Inserido o FlyWay para migrations</p>
