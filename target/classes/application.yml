@@ -3,11 +3,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/rest_spring_boot_ifsp?useTimezone=UTC
     username: root
-    password: Senha231
+    password: Senha123
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
